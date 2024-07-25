@@ -1,0 +1,31 @@
+ int lenOfLongSubarr(int A[], int n, int k) 
+{ 
+    int right = 0;
+    int left = 0;
+    int sum = 0;
+    int maxlen = 0;
+
+    while (right < n)
+    {
+        // Add the current element to the sum
+        sum += A[right];
+
+        // Move the left pointer to reduce the sum if it's greater than k
+        while (left <= right && sum > k)
+        {
+            sum -= A[left];
+            left++;
+        }
+
+        // Check if the current sum equals k
+        if (sum == k)
+        {
+            maxlen = max(maxlen, right - left + 1);
+        }
+
+        // Move the right pointer to expand the window
+        right++;
+    }
+
+    return maxlen;
+}
