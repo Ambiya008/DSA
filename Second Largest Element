@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int print2largest(int arr[], int n) {
+    int maxi = arr[0];
+    int secmaxi = -1;
+
+    for (int i = 1; i < n; i++) {
+        if (arr[i] > maxi) {
+            secmaxi = maxi;
+            maxi = arr[i];
+        } else if (arr[i] < maxi && arr[i] > secmaxi) {
+            secmaxi = arr[i];
+        }
+    }
+
+    return secmaxi;
+}
+
+int main() {
+    int n;
+    cout << "Enter the number of elements in the array: ";
+    cin >> n;
+
+    int arr[n];
+    cout << "Enter the elements of the array: ";
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    int result = print2largest(arr, n);
+    if (result == -1) {
+        cout << "There is no second largest element." << endl;
+    } else {
+        cout << "The second largest element is: " << result << endl;
+    }
+
+    return 0;
+}
