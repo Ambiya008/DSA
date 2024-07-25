@@ -1,0 +1,48 @@
+//optimal
+ int missingNumber(vector<int>& nums) {
+        int xor1 = 0;
+        int xor2 = 0;
+        int n = nums.size();
+        
+        for (int i = 0; i < n; i++) {
+            xor1 ^= nums[i];
+            xor2 ^= i;
+        }
+        
+        xor2 ^= n; // Include n in xor2
+        
+        return xor1 ^ xor2;
+    }
+//better
+int missingNumber(vector<int>& nums) {
+          int n = nums.size();
+        vector<int> mp(n + 1, 0); // Initialize the vector with size n+1 and all elements 0
+        int ans = 0;
+
+        for (int i = 0; i < nums.size(); i++) {
+            mp[nums[i]] = 1; // Mark the presence of each number in the array
+        }
+
+        for (int i = 1; i <= n; i++) {
+            if (mp[i] == 0) { // Check for the first number that is not marked
+                ans = i;
+                break;
+            }
+        }
+
+        return ans;
+    }
+
+
+brute//
+ int missingNumber(vector<int>& nums) {
+        int n=nums.size();
+        int sum=(n*(n+1))/2;
+        int sum2=0;
+        for(int i=0;i<n;i++)
+        {
+             sum2+=nums[i];
+        }
+        return sum-sum2;
+        
+    }
